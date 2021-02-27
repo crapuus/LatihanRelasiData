@@ -14,9 +14,11 @@ class CreateAddressesTable extends Migration
     public function up()
     {
         Schema::create('addresses', function (Blueprint $table) {
-            $table->bigincrements('id');
-            $table->integer('user')->unsigned();
+            $table->id();
+            $table->integer('user_id')->unsigned();
             $table->string('country');
+
+            $table->foreign('user_id')->references('id')->on('users')->ondelete('cascade');
             $table->timestamps();
         });
     }
